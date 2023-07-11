@@ -1,16 +1,16 @@
-FROM python:3.10.11-slim
-# FROM python:3.10.11-slim-bullseye
+# FROM python:3.10.11-slim
+FROM python:3.10.11-slim-bullseye
 
-RUN mkdir /src
-RUN mkdir /src/db
+RUN mkdir /app
+RUN mkdir /app/db
 
-WORKDIR /src
+WORKDIR /app
 
 COPY requirements.txt .
 
 RUN pip install --upgrade pip && pip install -r requirements.txt
 
-COPY /src/ /src/
+COPY /src/ /app/src/
 
 
-CMD ["python", "app.py", "--reload=False"]
+CMD ["python", "src/app.py", "--reload=False"]
