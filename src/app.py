@@ -15,7 +15,7 @@ from image_module.service import ImageService
 logging.getLogger().setLevel(logging.INFO)
 
 parser = argparse.ArgumentParser()
-parser.add_argument("--port", type=int, default=8000, help="Port number")
+parser.add_argument("--port", type=int, default=5000, help="Port number")
 parser.add_argument("--reload",type=bool, default=True, help="Reaload API when file is change")
 
 args = parser.parse_args()
@@ -35,7 +35,7 @@ app.add_middleware(
 
 ############################### Image Service ###############################
 
-IMAGE_PATH = 'C:/Users/Maods/Documents/Development/Mestrado/terumo/apps/terumo-model-binary-glomerulus-hypercellularity/data/raw/'
+IMAGE_PATH = '/src/db'
 app.mount("/image-service/glomerulos", StaticFiles(directory=IMAGE_PATH), name="images")
 
 @app.get("/image-service/collection/")

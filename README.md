@@ -89,6 +89,10 @@ pipenv requirements --dev-only > requirements.txt
 pipenv requirements --dev > dev-requirements.txt
 ```
 
-pipenv install
 
-python api/app.py
+Run app in pipenv env
+```
+python src/app.py
+# pipenv install
+
+```

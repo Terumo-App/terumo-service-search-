@@ -2,6 +2,7 @@ FROM python:3.10.11-slim
 # FROM python:3.10.11-slim-bullseye
 
 RUN mkdir /src
+RUN mkdir /src/db
 
 WORKDIR /src
 
