@@ -8,7 +8,7 @@ from search_module.schema.search_request import SearchRequestDTO
 
 import os
 
-my_env_var = 
+
 BINARY_EXTRACTOR = BinaryExtractor()
 DB_INDEX = DatabaseImp()
 API_BASEPATH = os.getenv('API_BASEPATH') if os.getenv('API_BASEPATH') else 'http://localhost:5000/image-service'
