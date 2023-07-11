@@ -67,6 +67,13 @@ That's the basic workflow for using pipenv. It provides a simple and convenient 
  task -l
  ```
  
+# Security Check for python libs
+```
+pipenv check
+#or
+safety check
+```
+
  If you desire to create new tasks you shoud inset them on the "pyproject.toml"
 
 
