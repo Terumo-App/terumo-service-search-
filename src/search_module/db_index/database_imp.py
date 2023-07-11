@@ -27,6 +27,7 @@ class DatabaseImp(DatabaseInterface):
                 f'Query vector should have dim 6. Found dim {len(query)}'
             )
 
+        # TODO set correct_att properly once we define the order of atts
         for correct_att, query_att in zip(atts, atts):
             if correct_att != query_att:
                 raise Exception(

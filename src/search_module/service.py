@@ -11,7 +11,7 @@ import os
 
 BINARY_EXTRACTOR = BinaryExtractor()
 DB_INDEX = DatabaseImp()
-API_BASEPATH = os.getenv('API_BASEPATH') if os.getenv('API_BASEPATH') else 'http://localhost:5000/image-service'
+API_BASEPATH = os.getenv('API_BASEPATH') if os.getenv('API_BASEPATH') else 'http://localhost:5000/image-service/glomerulos/'
 
 
 class SearchService:
@@ -29,7 +29,6 @@ class SearchService:
 
     @staticmethod
     def search(search_data: SearchRequestDTO):
-        # print([i.id for i in search_data.semantic_attributes])
 
         semantic_vector, atts = SearchService._extract_semantic_vector(
             search_data
