@@ -1,22 +1,24 @@
-from fastapi import FastAPI, File, UploadFile, HTTPException, Response
+import argparse
+import logging
+from typing import List
+
+import uvicorn
+from fastapi import FastAPI, File, HTTPException, Response, UploadFile
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
-import logging
-import argparse
-import uvicorn
-from typing import List
-from search_module.schema.image import ImageResponse
 
-from search_module.schema.search_request import SearchRequestDTO 
-from search_module.service import SearchService
 from image_module.service import ImageService
-
+from search_module.schema.image import ImageResponse
+from search_module.schema.search_request import SearchRequestDTO
+from search_module.service import SearchService
 
 logging.getLogger().setLevel(logging.INFO)
 
 parser = argparse.ArgumentParser()
-parser.add_argument("--port", type=int, default=5000, help="Port number")
-parser.add_argument("--reload",type=bool, default=True, help="Reaload API when file is change")
+parser.add_argument('--port', type=int, default=5000, help='Port number')
+parser.add_argument(
+    '--reload', type=bool, default=True, help='Reaload API when file is change'
+)
 
 args = parser.parse_args()
 port = args.port
@@ -26,21 +28,26 @@ reload = args.reload
 app = FastAPI()
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
-    allow_methods=["*"],
-    allow_headers=["*"],
+    allow_origins=['*'],
+    allow_methods=['*'],
+    allow_headers=['*'],
 )
 
-    
 
 ############################### Image Service ###############################
 
 IMAGE_PATH = '/src/db'
-app.mount("/image-service/glomerulos", StaticFiles(directory=IMAGE_PATH), name="images")
+app.mount(
+    '/image-service/glomerulos',
+    StaticFiles(directory=IMAGE_PATH),
+    name='images',
+)
 
-@app.get("/image-service/collection/")
+
+@app.get('/image-service/collection/')
 async def get_all_collections():
     return ImageService.get_all_collections()
+
 
 # @app.get("/image-service/image/collection/{id}")
 # async def get_collection(id: int):
@@ -56,18 +63,15 @@ async def get_all_collections():
 
 
 ############################### Search service ###############################
-@app.get("/search-service/semantic-attributes/")
+@app.get('/search-service/semantic-attributes/')
 async def get_semantic_attributes_available():
     return SearchService.get_semantic_attributes_available()
 
-@app.post("/search-service/search/")
+
+@app.post('/search-service/search/')
 async def search(search_data: SearchRequestDTO) -> List[ImageResponse]:
     return SearchService.search(search_data)
 
 
-
-
-
-
-if __name__ == "__main__":
-    uvicorn.run("app:app", host="0.0.0.0", port=port, reload=reload)
+if __name__ == '__main__':
+    uvicorn.run('app:app', host='0.0.0.0', port=port, reload=reload)

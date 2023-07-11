@@ -1,6 +1,7 @@
+from datetime import datetime
 
 from pydantic import BaseModel
-from datetime import datetime
+
 
 class CollectionDTO(BaseModel):
     id: int
@@ -11,17 +12,18 @@ class CollectionDTO(BaseModel):
     last_update: datetime
 
 
-
 class ImageService:
     @staticmethod
     def get_all_collections():
-        dummy_list = [CollectionDTO(
-            id=1,
-            name='Glomerulos',
-            type='Public',
-            owner='Matheus',
-            items=1000,
-            last_update=datetime.today()
-        )]
+        dummy_list = [
+            CollectionDTO(
+                id=1,
+                name='Glomerulos',
+                type='Public',
+                owner='Matheus',
+                items=1000,
+                last_update=datetime.today(),
+            )
+        ]
 
         return dummy_list
