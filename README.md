@@ -1,4 +1,4 @@
-# terumo-service-multiple-models
+# terumo-service-search-monolith
 
 # Pipenv setup
 
