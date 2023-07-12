@@ -1,13 +1,16 @@
 from typing import List, Tuple
-
+import os
 import numpy as np
 import pandas as pd
 from scipy.spatial import distance
 
 from search_module.db_index.database_interface import DatabaseInterface
 
-DB_LOCATION = 'src/search_module/db_index/db_binary_vector.npy'
-METADATA_LOCATION = 'src/search_module/db_index/image_db_index.csv'
+
+PATH_PREFIX = 'src/' if os.getenv('ON_CONTAINER') else ''
+
+DB_LOCATION = f'{PATH_PREFIX}search_module/db_index/db_binary_vector.npy'
+METADATA_LOCATION = f'{PATH_PREFIX}search_module/db_index/image_db_index.csv'
 
 
 class DatabaseImp(DatabaseInterface):

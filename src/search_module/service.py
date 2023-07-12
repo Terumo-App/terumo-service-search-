@@ -11,7 +11,7 @@ import os
 
 BINARY_EXTRACTOR = BinaryExtractor()
 DB_INDEX = DatabaseImp()
-API_BASEPATH = os.getenv('API_BASEPATH') if os.getenv('API_BASEPATH') else 'http://localhost:5000/image-service/glomerulos/'
+API_BASE_PATH = os.getenv('API_BASE_PATH') if os.getenv('API_BASE_PATH') else 'http://localhost:5000/image-service/glomerulos/'
 
 
 class SearchService:
@@ -57,7 +57,7 @@ class SearchService:
         """This functions execute query by given similarity mesure"""
         result = DB_INDEX.retrieve(vector, atts, k)
         result = [
-            ImageResponse(id=id, distance=dis, image_url=API_BASEPATH + path)
+            ImageResponse(id=id, distance=dis, image_url=API_BASE_PATH + path)
             for id, dis, path in result
         ]
         return result

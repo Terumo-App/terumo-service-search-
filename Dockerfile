@@ -1,5 +1,6 @@
-# FROM python:3.10.11-slim
 FROM python:3.10.11-slim-bullseye
+
+ENV ON_CONTAINER=True
 
 RUN mkdir /app
 RUN mkdir /app/db

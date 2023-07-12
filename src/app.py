@@ -1,6 +1,7 @@
 import argparse
 import logging
 from typing import List
+import os
 
 import uvicorn
 from fastapi import FastAPI, File, HTTPException, Response, UploadFile
@@ -12,12 +13,14 @@ from search_module.schema.image import ImageResponse
 from search_module.schema.search_request import SearchRequestDTO
 from search_module.service import SearchService
 
+
+
 logging.getLogger().setLevel(logging.INFO)
 
 parser = argparse.ArgumentParser()
 parser.add_argument('--port', type=int, default=5000, help='Port number')
 parser.add_argument(
-    '--reload', type=bool, default=True, help='Reaload API when file is change'
+    '--reload', type=bool, default=True, help='Reload API when file is change'
 )
 
 args = parser.parse_args()
@@ -35,8 +38,10 @@ app.add_middleware(
 
 
 ############################### Image Service ###############################
+LOCAL_IMAGE_PATH = 'C:/Users/Maods/Documents/Development/Mestrado/terumo/apps/terumo-model-binary-glomerulus-hypercellularity/data/raw/'
+CONTAINER_IMAGE_PATH = '/src/db'
+IMAGE_PATH = CONTAINER_IMAGE_PATH if os.getenv('ON_CONTAINER') else LOCAL_IMAGE_PATH
 
-IMAGE_PATH = '/src/db'
 app.mount(
     '/image-service/glomerulos',
     StaticFiles(directory=IMAGE_PATH),

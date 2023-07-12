@@ -1,21 +1,33 @@
 import numpy as np
 import torch
+import os
 from PIL import Image
 from torchvision import transforms
 
 from search_module.binary_models.model import Net
 
 DEVICE = 'cuda' if torch.cuda.is_available() else 'cpu'
-
+PATH_PREFIX = 'src/' if os.getenv('ON_CONTAINER') else ''
 
 WEIGHTS = {
-    'HIPER': 'src/search_module/binary_models/artifacts/hiper_others_2023-05-12-18-06-48/4_fold_max_acc_checkpoint.pth.tar',
-    'MEMBR': 'src/search_module/binary_models/artifacts/membran_others_2023-05-12-20-31-18/0_fold_max_acc_checkpoint.pth.tar',
-    'NORM': 'src/search_module/binary_models/artifacts/normal_others_2023-05-12-15-45-47/4_fold_max_acc_checkpoint.pth.tar',
-    'SCLER': 'src/search_module/binary_models/artifacts/sclero_others_2023-05-12-13-27-54/4_fold_max_acc_checkpoint.pth.tar',
-    'PODOC': 'src/search_module/binary_models/artifacts/podoc_others_2023-05-17-08-46-23/2_fold_max_acc_checkpoint.pth.tar',
-    'CRESC': 'src/search_module/binary_models/artifacts/cresc_others_2023-05-17-13-22-44/2_fold_max_acc_checkpoint.pth.tar',
+    'HIPER': f'{PATH_PREFIX}search_module/binary_models/artifacts/hiper_others_2023-05-12-18-06-48/4_fold_max_acc_checkpoint.pth.tar',
+    'MEMBR': f'{PATH_PREFIX}search_module/binary_models/artifacts/membran_others_2023-05-12-20-31-18/0_fold_max_acc_checkpoint.pth.tar',
+    'NORM': f'{PATH_PREFIX}search_module/binary_models/artifacts/normal_others_2023-05-12-15-45-47/4_fold_max_acc_checkpoint.pth.tar',
+    'SCLER': f'{PATH_PREFIX}search_module/binary_models/artifacts/sclero_others_2023-05-12-13-27-54/4_fold_max_acc_checkpoint.pth.tar',
+    'PODOC': f'{PATH_PREFIX}search_module/binary_models/artifacts/podoc_others_2023-05-17-08-46-23/2_fold_max_acc_checkpoint.pth.tar',
+    'CRESC': f'{PATH_PREFIX}search_module/binary_models/artifacts/cresc_others_2023-05-17-13-22-44/2_fold_max_acc_checkpoint.pth.tar',
 }
+
+# WEIGHTS = {
+#     'HIPER': 'search_module/binary_models/artifacts/hiper_others_2023-05-12-18-06-48/4_fold_max_acc_checkpoint.pth.tar',
+#     'MEMBR': 'search_module/binary_models/artifacts/membran_others_2023-05-12-20-31-18/0_fold_max_acc_checkpoint.pth.tar',
+#     'NORM': 'search_module/binary_models/artifacts/normal_others_2023-05-12-15-45-47/4_fold_max_acc_checkpoint.pth.tar',
+#     'SCLER': 'search_module/binary_models/artifacts/sclero_others_2023-05-12-13-27-54/4_fold_max_acc_checkpoint.pth.tar',
+#     'PODOC': 'search_module/binary_models/artifacts/podoc_others_2023-05-17-08-46-23/2_fold_max_acc_checkpoint.pth.tar',
+#     'CRESC': 'search_module/binary_models/artifacts/cresc_others_2023-05-17-13-22-44/2_fold_max_acc_checkpoint.pth.tar',
+# }
+
+print(WEIGHTS['HIPER'])
 
 
 def get_transform():
