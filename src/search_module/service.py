@@ -1,20 +1,25 @@
+import os
 from typing import List, Tuple
+
 from fastapi import UploadFile
 
-from src.search_module.binary_models.binary_extractor_imp import BinaryExtractor
-from src.search_module.db_vector_index.database_imp import VectorDBImp
+from src.search_module.binary_models.binary_extractor_imp import (
+    BinaryExtractor,
+)
 from src.search_module.db_sqllite.sqllite_db_imp import SQLLiteDBImp
+from src.search_module.db_vector_index.database_imp import VectorDBImp
 from src.search_module.schema.attribute import AttributeDTO
 from src.search_module.schema.image import ImageResponse
 from src.search_module.schema.search_request import SearchRequestDTO
 
-import os
-
 BINARY_EXTRACTOR = BinaryExtractor()
 DB_INDEX = VectorDBImp()
 SQLLite = SQLLiteDBImp()
-API_BASE_PATH = os.getenv('API_BASE_PATH') if os.getenv(
-    'API_BASE_PATH') else 'http://localhost:5000/image-service/glomerulos/'
+API_BASE_PATH = (
+    os.getenv('API_BASE_PATH')
+    if os.getenv('API_BASE_PATH')
+    else 'http://localhost:5000/image-service/glomerulos/'
+)
 
 
 class SearchService:
@@ -52,8 +57,8 @@ class SearchService:
     @staticmethod
     def _save_image_on_file_storage(image: UploadFile) -> str:
         """This function is responsible for saving image in file storage used by the app"""
-        file_location = f"image_storage/{image.filename}"
-        with open(file_location, "wb") as f:
+        file_location = f'image_storage/{image.filename}'
+        with open(file_location, 'wb') as f:
             f.write(image.file.read())
 
         return file_location
@@ -76,7 +81,7 @@ class SearchService:
 
     @staticmethod
     def _retrieve_k_similar(
-            vector: List[int], atts: List[str], k: int
+        vector: List[int], atts: List[str], k: int
     ) -> List[Tuple[int, float, str]]:
         """This functions execute query by given similarity mesure"""
         result = DB_INDEX.retrieve(vector, atts, k)

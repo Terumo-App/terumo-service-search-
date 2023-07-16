@@ -8,8 +8,6 @@ from src.search_module.binary_models.binary_base_model import ModelInfer
 from src.search_module.binary_models.binary_extractor_interface import (
     SemanticExtractorInterface,
 )
-
-
 from src.search_module.db_sqllite.sqllite_db_imp import SQLLiteDBImp
 from src.search_module.schema.search_request import SearchRequestDTO
 
@@ -34,7 +32,9 @@ MODELS_NAME = [
 
 
 class BinaryExtractor(SemanticExtractorInterface):
-    def extract(self, search_data: SearchRequestDTO) -> Tuple[List[int], List[str]]:
+    def extract(
+        self, search_data: SearchRequestDTO
+    ) -> Tuple[List[int], List[str]]:
 
         vector = []
         att = []
@@ -42,7 +42,6 @@ class BinaryExtractor(SemanticExtractorInterface):
         att_to_be_searched = [i.id for i in search_data.semantic_attributes]
         # image = self._convert_base64_to_image(search_data.image_base64)
         image = self._load_image(search_data.image_metadata['id'])
-
 
         for model, name in zip(MODELS, MODELS_NAME):
             if name in att_to_be_searched:
@@ -72,4 +71,3 @@ class BinaryExtractor(SemanticExtractorInterface):
         res = SQLLite.get_image_path(image_id)
         print(res)
         return Image.open(res['filepath']).convert('RGB')
-
