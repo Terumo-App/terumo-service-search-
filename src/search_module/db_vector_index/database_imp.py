@@ -4,16 +4,16 @@ import numpy as np
 import pandas as pd
 from scipy.spatial import distance
 
-from search_module.db_index.database_interface import DatabaseInterface
+from src.search_module.db_vector_index.vector_db_interface import VectorDBInterface
 
 
 PATH_PREFIX = 'src/' if os.getenv('ON_CONTAINER') else ''
 
-DB_LOCATION = f'{PATH_PREFIX}search_module/db_index/db_binary_vector.npy'
-METADATA_LOCATION = f'{PATH_PREFIX}search_module/db_index/image_db_index.csv'
+DB_LOCATION = f'{PATH_PREFIX}search_module/db_vector_index/db_binary_vector.npy'
+METADATA_LOCATION = f'{PATH_PREFIX}search_module/db_vector_index/image_db_index.csv'
 
 
-class DatabaseImp(DatabaseInterface):
+class VectorDBImp(VectorDBInterface):
     def __init__(self):
         self.db = np.load(DB_LOCATION)
         self.metadata = pd.read_csv(METADATA_LOCATION)

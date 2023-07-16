@@ -13,6 +13,8 @@ scipy = "*"
 pillow = "*"
 efficientnet-pytorch = "*"
 torchvision = "*"
+python-multipart = "*"
+db-sqlite3 = "*"
 
 [dev-packages]
 safety = "*"

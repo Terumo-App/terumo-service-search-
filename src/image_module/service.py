@@ -4,7 +4,7 @@ from pydantic import BaseModel
 
 
 class CollectionDTO(BaseModel):
-    id: str
+    key: str
     name: str
     type: str
     owner: str
@@ -17,7 +17,7 @@ class ImageService:
     def get_all_collections():
         dummy_list = [
             CollectionDTO(
-                id='1',
+                key='1',
                 name='Glomerulos',
                 type='Public',
                 owner='Matheus',

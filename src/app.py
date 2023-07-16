@@ -4,7 +4,7 @@ from typing import List
 import os
 
 import uvicorn
-from fastapi import FastAPI, File, HTTPException, Response, UploadFile
+from fastapi import FastAPI, File, HTTPException, Request, UploadFile
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 
@@ -71,6 +71,11 @@ async def get_all_collections():
 @app.get('/search-service/semantic-attributes/')
 async def get_semantic_attributes_available():
     return SearchService.get_semantic_attributes_available()
+
+@app.post('/search-service/upload-query-image/')
+async def upload(file: UploadFile = File(...)):
+    image_id = SearchService.upload_query_image(file)
+    return image_id
 
 
 @app.post('/search-service/search/')

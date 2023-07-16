@@ -2,7 +2,7 @@ from abc import ABC, abstractmethod
 from typing import List, Tuple
 
 
-class DatabaseInterface(ABC):
+class VectorDBInterface(ABC):
     """
     The Semantic Extractor interface declares the operations that all concrete s Semantic Extractor
     must implement.
