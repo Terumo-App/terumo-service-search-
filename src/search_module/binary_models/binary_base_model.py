@@ -11,7 +11,7 @@ from search_module.binary_models.model import Net
 DEVICE = 'cuda' if torch.cuda.is_available() else 'cpu'
 
 ON_CONTAINER = os.getenv('ON_CONTAINER')
-ON_CONTAINER = True
+# ON_CONTAINER = True
 PATH_PREFIX = 'src/' if ON_CONTAINER else ''
 
 WEIGHTS = {

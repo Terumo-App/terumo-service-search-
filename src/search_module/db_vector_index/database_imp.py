@@ -10,7 +10,7 @@ from search_module.db_vector_index.vector_db_interface import (
 )
 
 ON_CONTAINER = os.getenv('ON_CONTAINER')
-ON_CONTAINER = True
+# ON_CONTAINER = True
 PATH_PREFIX = 'src/' if ON_CONTAINER else ''
 
 DB_LOCATION = (
