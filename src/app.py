@@ -36,7 +36,8 @@ app.add_middleware(
 
 
 ############################### Image Service ###############################
-LOCAL_IMAGE_PATH = 'C:/Users/Maods/Documents/Development/Mestrado/terumo/apps/terumo-model-binary-glomerulus-hypercellularity/data/raw/'
+# LOCAL_IMAGE_PATH = 'C:/Users/Maods/Documents/Development/Mestrado/terumo/apps/terumo-model-binary-glomerulus-hypercellularity/data/raw/'
+LOCAL_IMAGE_PATH = os.getenv('LOCAL_IMAGE_PATH')
 CONTAINER_IMAGE_PATH = '/src/db'
 IMAGE_PATH = (
     CONTAINER_IMAGE_PATH if os.getenv('ON_CONTAINER') else LOCAL_IMAGE_PATH

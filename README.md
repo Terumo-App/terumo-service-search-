@@ -104,13 +104,25 @@ To run the application, follow these steps:
    - Install pipenv using pip: `pip install pipenv`
    - Create a project and set the Python version: `pipenv --python 3.10.4`
    - Install the packages listed in an existing Pipfile.lock: `pipenv sync`
-3. Run the application.
-```bash
-cd /path/to/your/project
-pipenv shell
-python src/app.py
-```
-4. Development:
+   3. Run the application.
+      1. Download Image Dataset and Extract the Zip File
+   >   Download the image dataset required by the Terumo application. Once downloaded, extract the contents of the zip file to a directory of your choice ( The image dataset used in the indexing database is located on the PattoSpother share drive).
+      2. Create an env variable called `LOCAL_IMAGE_PATH` in you machine to store the Dataset location. This env variable will be used to map the image directory on api. The code bellow located on `app.py` file will be using this env var.
+      ```python
+      LOCAL_IMAGE_PATH = os.getenv('LOCAL_IMAGE_PATH')
+      app.mount(
+          '/image-service/glomerulos',
+          StaticFiles(directory=IMAGE_PATH),
+          name='images',
+      )
+      ```
+      3. Launch pipenv environment and start the app
+      ```bash
+      cd /path/to/your/project
+      pipenv shell
+      python src/app.py
+      ```
+3. Development:
    - Automating tests with task py.
    >  In order to automate process we are using taskpy. You can check the tasks available using the  command. 
     ```bash
@@ -157,7 +169,7 @@ python src/app.py
    pipenv check
    ```   
 
-5. Packing the application as a container:
+4. Packing the application as a container:
    - Building the container.
    ```bash
    sh scripts/build_container.sh
