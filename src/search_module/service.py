@@ -20,6 +20,7 @@ API_BASE_PATH = (
     if os.getenv('API_BASE_PATH')
     else 'http://localhost:5000/image-service/glomerulos/'
 )
+ROOT_REFERENCE = os.getcwd()
 
 
 class SearchService:
@@ -57,7 +58,15 @@ class SearchService:
     @staticmethod
     def _save_image_on_file_storage(image: UploadFile) -> str:
         """This function is responsible for saving image in file storage used by the app"""
-        file_location = f'image_storage/{image.filename}'
+
+        folder_name = "image_storage"
+
+        folder_path = os.path.join(ROOT_REFERENCE, folder_name)
+        if not os.path.exists(folder_path):
+            os.makedirs(folder_path)
+
+        file_location = os.path.join(folder_path, image.filename)
+
         with open(file_location, 'wb') as f:
             f.write(image.file.read())
 
@@ -81,7 +90,7 @@ class SearchService:
 
     @staticmethod
     def _retrieve_k_similar(
-        vector: List[int], atts: List[str], k: int
+            vector: List[int], atts: List[str], k: int
     ) -> List[Tuple[int, float, str]]:
         """This functions execute query by given similarity mesure"""
         result = DB_INDEX.retrieve(vector, atts, k)
