@@ -4,12 +4,12 @@ from typing import List, Tuple
 
 from PIL import Image
 
-from src.search_module.binary_models.binary_base_model import ModelInfer
-from src.search_module.binary_models.binary_extractor_interface import (
+from search_module.binary_models.binary_base_model import ModelInfer
+from search_module.binary_models.binary_extractor_interface import (
     SemanticExtractorInterface,
 )
-from src.search_module.db_sqllite.sqllite_db_imp import SQLLiteDBImp
-from src.search_module.schema.search_request import SearchRequestDTO
+from search_module.db_sqllite.sqllite_db_imp import SQLLiteDBImp
+from search_module.schema.search_request import SearchRequestDTO
 
 SQLLite = SQLLiteDBImp()
 

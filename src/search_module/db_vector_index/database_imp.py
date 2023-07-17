@@ -5,11 +5,13 @@ import numpy as np
 import pandas as pd
 from scipy.spatial import distance
 
-from src.search_module.db_vector_index.vector_db_interface import (
+from search_module.db_vector_index.vector_db_interface import (
     VectorDBInterface,
 )
 
-PATH_PREFIX = 'src/' if os.getenv('ON_CONTAINER') else ''
+ON_CONTAINER = os.getenv('ON_CONTAINER')
+ON_CONTAINER = True
+PATH_PREFIX = 'src/' if ON_CONTAINER else ''
 
 DB_LOCATION = (
     f'{PATH_PREFIX}search_module/db_vector_index/db_binary_vector.npy'

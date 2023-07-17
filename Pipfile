@@ -15,6 +15,7 @@ efficientnet-pytorch = "*"
 torchvision = "*"
 python-multipart = "*"
 db-sqlite3 = "*"
+sqlalchemy = "*"
 
 [dev-packages]
 safety = "*"

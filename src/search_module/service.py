@@ -3,14 +3,14 @@ from typing import List, Tuple
 
 from fastapi import UploadFile
 
-from src.search_module.binary_models.binary_extractor_imp import (
+from search_module.binary_models.binary_extractor_imp import (
     BinaryExtractor,
 )
-from src.search_module.db_sqllite.sqllite_db_imp import SQLLiteDBImp
-from src.search_module.db_vector_index.database_imp import VectorDBImp
-from src.search_module.schema.attribute import AttributeDTO
-from src.search_module.schema.image import ImageResponse
-from src.search_module.schema.search_request import SearchRequestDTO
+from search_module.db_sqllite.sqllite_db_imp import SQLLiteDBImp
+from search_module.db_vector_index.database_imp import VectorDBImp
+from search_module.schema.attribute import AttributeDTO
+from search_module.schema.image import ImageResponse
+from search_module.schema.search_request import SearchRequestDTO
 
 BINARY_EXTRACTOR = BinaryExtractor()
 DB_INDEX = VectorDBImp()

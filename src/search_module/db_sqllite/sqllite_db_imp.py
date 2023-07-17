@@ -5,10 +5,10 @@ from fastapi import UploadFile
 from sqlalchemy import Column, Integer, String, Uuid, create_engine
 from sqlalchemy.orm import declarative_base, sessionmaker
 
-from src.search_module.db_sqllite.sqllite_db_interface import (
+from search_module.db_sqllite.sqllite_db_interface import (
     SQLLiteDBInterface,
 )
-from src.search_module.db_sqllite.sqllite_image_schema import ImageDAO
+from search_module.db_sqllite.sqllite_image_schema import ImageDAO
 
 DB_PATH = 'sqlite:///image_database.db'
 
